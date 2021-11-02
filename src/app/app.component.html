@@ -8,12 +8,15 @@
 
       <div class="card mt-3">
 
-        <div class="card-header">
-          Quiz List 
-        </div>
-
-        <div class="card-body">
-          coming soon...
+        <div class="list-group list-group-flush">
+          <!-- interpolated binding step 2 *ngFor -->
+          <button 
+            class="list-group-item list-group-item-action"
+            *ngFor="let q of quizzes"
+          >
+          <!-- interpolated binding step 3 -->
+            {{ q.name }}
+          </button>
         </div>
 
       </div>

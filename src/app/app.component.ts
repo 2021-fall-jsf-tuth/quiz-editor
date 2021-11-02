@@ -19,6 +19,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const qs = this.quizSvc.loadQuizzes();
     console.log(qs);
+
+    this.quizzes = qs;
   }
+
+  // creating a new property and initializing to empty array to display data to webpage
+  // interpolated binding step 1
+  quizzes: any[] = [];
 
 }
