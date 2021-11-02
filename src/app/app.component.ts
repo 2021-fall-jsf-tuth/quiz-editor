@@ -16,5 +16,9 @@ constructor(
 ngOnInit() {
   const qs = this.quizSvc.loadQuizzes();
   console.log(qs);
+
+  this.quizzes = qs;
 }
+
+  quizzes: any[] = [];
 }
