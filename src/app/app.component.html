@@ -8,14 +8,33 @@
         <div class="list-group list-group-flush">
           <button 
             class="list-group-item list-group-item-action"
-            *ngFor="let q of quizzes"
+            *ngFor="let quiz of quizzes"
+            [class.active]="quiz === selectedQuiz"
+            (click)="selectQuiz(quiz)"
           >
-            {{ q.name }}
+            {{ quiz.quizName }}
           </button>
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz == undefined"
+    >
+      <div class="alert alert-light mt-3 text-center">
+        <b>
+          No Quiz Selected
+        </b>
+        <hr>
+        <p>
+          Please select or add a new quiz...
+        </p>
+      </div>
+    </div>
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz !== undefined"
+    >
       <div class="mt-3">
         <button class="btn btn-outline-dark">
           Save
@@ -29,7 +48,7 @@
           General
         </div>
         <div class="card-body">
-          Coming soon
+          {{ selectedQuiz ? selectedQuiz.quizName : 'No Quiz Selected' }}
         </div>
       </div>
       <div class="card mt-3">
