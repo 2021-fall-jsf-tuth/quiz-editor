@@ -6,11 +6,13 @@
       </button>
       <div class="card mt-3">
         <div class="list-group list-group-flush">
-          <button 
+          <button
             class="list-group-item list-group-item-action"
-            *ngFor="let q of quizzes"
+            *ngFor="let quiz of quizzes"
+            (click)="selectQuiz(quiz)"
+            [class.active]="selectedQuiz === quiz"
           >
-            {{ q.name }}
+            {{ quiz.quizName }}
           </button>
         </div>
       </div>
@@ -47,7 +49,7 @@
         <div class="card-body">
           Coming soon
         </div>
-      </div>            
+      </div>
     </div>
   </div>
 </div>
