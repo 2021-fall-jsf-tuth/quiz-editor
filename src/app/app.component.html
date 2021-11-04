@@ -5,7 +5,7 @@
     <div class="col-md-4">
       <button 
         class="btn btn-outline-success mt-3"
-
+        (click)="addNewQuiz()"
       >
         Add New Quiz
       </button>
@@ -16,7 +16,6 @@
             *ngFor="let q of quizzes"
             (click)="selectQuiz(q)"
             [class.active]="selectedQuiz === q"
-            [(ngModel)]="q.input"
           >
             {{ q.quizName }}
             <span 
@@ -60,7 +59,11 @@
           General
         </div>
         <div class="card-body">
-          {{ selectedQuiz ? selectedQuiz.quizName : "No Quiz Selected" }} 
+          <input
+            class="form-control"
+            [(ngModel)]="selectedQuiz.quizName" 
+          />
+          <!-- {{ selectedQuiz ? selectedQuiz.quizName : "No Quiz Selected" }}  -->
           <!-- {{ selectedQuiz?.quizQuestions?.length }} -->
         </div>
       </div>
