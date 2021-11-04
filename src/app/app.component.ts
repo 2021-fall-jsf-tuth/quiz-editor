@@ -37,7 +37,7 @@ export class AppComponent  implements OnInit {
 
   selectedQuiz: QuizDisplay | undefined = undefined;
 
-  selectQuiz = (quizToSelect) => {
-    this.selectQuiz = quizToSelsct
+  selectQuiz = (quizToSelect: QuizDisplay) => {
+    this.selectedQuiz = quizToSelect
   }
 }
