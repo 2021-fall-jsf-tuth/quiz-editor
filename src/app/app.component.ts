@@ -38,4 +38,12 @@ export class AppComponent implements OnInit {
   }
 
   quizzes: QuizDisplay[] = [];
-}
+
+  
+  selectedQuiz: QuizDisplay | undefined = undefined;
+
+  // creating a method to change the selected quiz
+  selectQuiz = (quizToSelect: QuizDisplay) => {
+    this.selectedQuiz = quizToSelect;
+  };
+}// End of class
