@@ -45,5 +45,6 @@ export class AppComponent implements OnInit {
   // creating a method to change the selected quiz
   selectQuiz = (quizToSelect: QuizDisplay) => {
     this.selectedQuiz = quizToSelect;
+    console.log(quizToSelect);
   };
 }// End of class
