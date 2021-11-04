@@ -13,7 +13,10 @@
             [class.active]="selectedQuiz === quiz"
           >
             {{ quiz.quizName }}
-            <span class="font-weight-lighter font-italic">
+            <span 
+              class="font-weight-lighter font-italic"
+              [class.text-danger]="quiz.quizQuestions.length === 0"
+            >
               {{ quiz.quizQuestions.length }} questions
             </span>
           </button>
