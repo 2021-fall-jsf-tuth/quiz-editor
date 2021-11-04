@@ -13,7 +13,9 @@
             [class.active]="selectedQuiz === quiz"
           >
             {{ quiz.quizName }}
-            <span class="text-lighter font-italic"
+            <span
+            class="text-lighter font-italic"
+            [class.text-danger]="quiz.quizQuestions.length === 0"
             >
             {{ quiz.quizQuestions.length }} questions
             </span>
