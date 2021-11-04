@@ -25,6 +25,21 @@
         </div>
       </div>
     </div>
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz === undefined"
+    >
+      <div class="alert alert-light text-center mt-3">
+        <b>
+          No Quiz Selected
+        </b>
+        <hr />
+        <p>
+          Please select or add a new quiz...
+        </p>
+      </div>
+
+    </div>
     <div class="col-md-8"
       *ngIf="selectedQuiz !== undefined"
     >
