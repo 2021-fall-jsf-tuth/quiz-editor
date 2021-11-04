@@ -15,7 +15,10 @@
             [class.active]="selectedQuiz === q"
           >
             {{ q.quizName }}
-            <span class="font-weight-lighter font-italic">
+            <span 
+              class="font-weight-lighter font-italic"
+              [class.text-danger]="q.quizQuestions.length === 0"
+            >
               {{ q.quizQuestions.length }} questions
             </span>
           </button>
