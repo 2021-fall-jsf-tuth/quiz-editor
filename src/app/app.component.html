@@ -3,7 +3,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-outline-success mt-3">
+      <button 
+        class="btn btn-outline-success mt-3"
+
+      >
         Add New Quiz
       </button>
       <div class="card mt-3">
@@ -13,6 +16,7 @@
             *ngFor="let q of quizzes"
             (click)="selectQuiz(q)"
             [class.active]="selectedQuiz === q"
+            [(ngModel)]="q.input"
           >
             {{ q.quizName }}
             <span 
