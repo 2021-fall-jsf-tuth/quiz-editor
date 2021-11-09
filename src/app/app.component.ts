@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
@@ -42,4 +43,22 @@ export class AppComponent implements OnInit {
     console.log(quizToSelect);
     this.selectedQuiz = quizToSelect;
   };
+
+  addNewQuiz = () => {
+
+    const newQuiz: QuizDisplay = {
+      quizName: 'Untitled Quiz'
+      , quizQuestions: []
+    }
+
+    this.quizzes = [
+      ...this.quizzes
+      , newQuiz
+    ];
+
+    this.selectQuiz(newQuiz)
+    
+  }
+
+
 }
