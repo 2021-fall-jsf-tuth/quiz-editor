@@ -42,4 +42,18 @@ export class AppComponent implements OnInit {
     console.log(quizToSelect);
     this.selectedQuiz = quizToSelect;
   };
+
+  addNewQuiz = () => {
+    // reassign our list of quizzes to a new object array literal
+    this.quizzes = [
+      // spread in all previous quizzes from line 37, and the current quiz that will be added
+      ...this.quizzes
+      , 
+      // add an object for the new quiz
+      {
+        quizName: "Untitled Quiz"
+        , quizQuestions: []
+      }
+    ];
+  };
 }
