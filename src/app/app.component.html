@@ -58,18 +58,39 @@
         </div>
         <div class="card-body">
           <input 
-            type="text" 
-            class="form-control"
+            type="text"
+            class="form-control mt-3"
             [(ngModel)]="selectedQuiz.quizName"
           />
         </div>
       </div>
-      <div class="card mt-3">
+      <div class="card">
         <div class="card-header">
           Questions
         </div>
         <div class="card-body">
-          Coming soon
+          <button
+            class="btn btn-outline-success"
+            (click)="addNewQuestion()"
+            >
+            Add New Question
+          </button>
+          <div
+            class="d-flex justify-content-between"
+            *ngFor="let question of selectedQuiz.quizQuestions"
+          >
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="question.questionName"
+            >
+            <button
+              class="btn btn-link text-danger"
+              (click)="removeQuestion(question)"
+              >
+              Remove
+            </button>
+          </div>
         </div>
       </div>
       <div class="card mt-3">
