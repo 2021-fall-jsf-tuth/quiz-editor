@@ -69,7 +69,22 @@
           Questions
         </div>
         <div class="card-body">
-          Coming soon
+          <button class="btn btn-outline-success">
+            Coming soon
+          </button>
+          <div 
+          class="d-flex justify-content-between mt-3"
+          *ngFor= "let question of selectedQuiz.quizQuestions">
+            <input type="text" class="form-control"
+            [(ngModel)]="question.questionName"
+            />
+            <button class="btn btn-link text-danger"
+            (click="removeQuestion()")
+            >
+              
+              remove
+            </button>
+          </div>
         </div>
       </div>
       <div class="card mt-3">
