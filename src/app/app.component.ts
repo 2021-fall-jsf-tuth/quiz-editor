@@ -44,16 +44,22 @@ export class AppComponent implements OnInit {
   };
 
   addNewQuiz = () => {
+
+    const newQuiz: QuizDisplay = {
+      quizName: 'Untitled Quiz'
+      , quizQuestions: []
+    };
+
+
     // reassign our list of quizzes to a new object array literal
     this.quizzes = [
       // spread in all previous quizzes from line 37, and the current quiz that will be added
       ...this.quizzes
-      , 
-      // add an object for the new quiz
-      {
-        quizName: "Untitled Quiz"
-        , quizQuestions: []
-      }
+      , newQuiz
+      
     ];
+
+    //this.selectQuiz(this.quizzes[this.quizzes.length-1]); does the same as the line below
+    this.selectQuiz(newQuiz);
   };
 }
