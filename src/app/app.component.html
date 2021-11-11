@@ -95,14 +95,18 @@
       </div>
       <div class="card mt-3">
         <div class="card-header">
-          Other
+          Delete Quiz?
         </div>
         <div class="card-body">
           <div class="form-check">
             <label 
               class="form-check-label text-danger"
             >
-              <input type="checkbox" class="form-check-input">
+              <input 
+                type="checkbox" 
+                class="form-check-input"
+                [(ngModel)]="selectedQuiz.markedForDelete"
+              >
               Mark for Delete
             </label>
           </div>
