@@ -1,12 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
+
+
+
+      <div class="mt-3 d-flex justify-content-between">
+
       <button 
-        class="btn btn-outline-success mt-3"
+        class="btn btn-outline-success"
         (click)="addNewQuiz()"
       >
         Add New Quiz
       </button>
+      <button
+        class="btn btn-link text-secondary btn-sm"
+        (click)="unselectQuiz()"
+        *ngIf="selectedQuiz !== undefined"
+      >
+        Unselect</button>
+
+      </div>
+
+
+
+
+
       <div class="card mt-3">
         <div class="list-group list-group-flush">
           <button 
