@@ -32,7 +32,7 @@
               [class.text-danger]="quiz.quizQuestions.length === 0"
               [class.text-light]="quiz === selectedQuiz"
             >
-              {{ quiz.quizQuestions.length }} question<span *ngIf="quizQuestions.length !== 1">s</span>
+              {{ quiz.quizQuestions.length }} question<span *ngIf="quiz.quizQuestions.length !== 1">s</span>
             </span>
           </button>
         </div>
