@@ -3,7 +3,8 @@ import { QuizService } from './quiz.service';
 
 interface QuizDisplay {
   quizName: string;
-  quizQuestions: QuestionDisplay[]
+  quizQuestions: QuestionDisplay[];
+  markedForDelete: boolean;
 }
 
 interface QuestionDisplay {
@@ -24,13 +25,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     const qs = this.quizSvc.loadQuizzes();
-    console.log(qs);  
-    
+    console.log(qs);
+
     this.quizzes = qs.map(x => ({
       quizName: x.name
       , quizQuestions: x.questions.map(y => ({
         questionName: y.name
       }))
+      ,markedForDelete: false
     }));
   }
 
@@ -48,11 +50,13 @@ export class AppComponent implements OnInit {
     const newQuiz: QuizDisplay = {
       quizName: 'Untitled Quiz'
       , quizQuestions: []
+      , markedForDelete: false
     };
 
     this.quizzes = [
       ...this.quizzes
       , newQuiz
+      ,
     ];
 
     this.selectQuiz(newQuiz);
@@ -72,7 +76,7 @@ export class AppComponent implements OnInit {
 
   removeQuestion = (questionToRemove: QuestionDisplay) => {
     if (this.selectedQuiz) {
-      this.selectedQuiz.quizQuestions = 
+      this.selectedQuiz.quizQuestions =
         this.selectedQuiz.quizQuestions.filter(
           x => x !== questionToRemove
         );

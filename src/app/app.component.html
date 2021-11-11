@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <button 
+      <button
         class="btn btn-outline-success mt-3"
         (click)="addNewQuiz()"
       >
@@ -9,14 +9,15 @@
       </button>
       <div class="card mt-3">
         <div class="list-group list-group-flush">
-          <button 
+          <button
             class="list-group-item list-group-item-action d-flex justify-content-between text-break mr-3"
             *ngFor="let quiz of quizzes"
             (click)="selectQuiz(quiz)"
             [class.active]="selectedQuiz === quiz"
+            [style.text-decoration]="quiz.markedForDelete ? 'line-through' : 'inherit'"
           >
             {{ quiz.quizName }}
-            <span 
+            <span
               class="font-weight-lighter font-italic text-nowrap"
               [class.text-danger]="quiz.quizQuestions.length === 0"
             >
@@ -26,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div 
+    <div
       class="col-md-8"
       *ngIf="selectedQuiz === undefined"
     >
@@ -40,7 +41,7 @@
         </p>
       </div>
     </div>
-    <div 
+    <div
       class="col-md-8"
       *ngIf="selectedQuiz !== undefined"
     >
@@ -57,8 +58,8 @@
           General
         </div>
         <div class="card-body">
-          <input 
-            type="text" 
+          <input
+            type="text"
             class="form-control"
             [(ngModel)]="selectedQuiz.quizName"
           />
@@ -69,7 +70,7 @@
           Questions
         </div>
         <div class="card-body">
-          <button 
+          <button
             class="btn btn-outline-success"
             (click)="addNewQuestion()"
           >
@@ -79,12 +80,12 @@
             class="d-flex justify-content-between mt-3"
             *ngFor="let question of selectedQuiz.quizQuestions"
           >
-            <input 
-              type="text" 
+            <input
+              type="text"
               class="form-control"
               [(ngModel)]="question.questionName"
             />
-            <button 
+            <button
               class="btn btn-link text-danger"
               (click)="removeQuestion(question)"
             >
@@ -98,9 +99,17 @@
           Other
         </div>
         <div class="card-body">
-          Coming soon
+         <div class="form-check">
+            <label class="form-check-label text-danger">
+
+             <input type="checkbox"
+                class="form-check-input"
+                [(ngModel)]="selectedQuiz.markedForDelete"
+            />
+             Mark for delete</label>
+         </div>
         </div>
-      </div>            
+        </div>
+      </div>
     </div>
   </div>
-</div>
