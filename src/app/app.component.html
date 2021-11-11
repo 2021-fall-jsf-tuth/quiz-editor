@@ -46,8 +46,14 @@
           No Quiz Selected
         </b>
         <hr>
-        <p>
-          Please select or add a new quiz...
+        <p class="d-flex align-items-center justify-content-center">
+          Please select or 
+          <button 
+            class="btn btn-link pl-1"
+            (click)="addNewQuiz()"
+          >
+            add a new quiz...
+        </button>
         </p>
       </div>
     </div>
