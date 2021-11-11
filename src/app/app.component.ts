@@ -81,4 +81,8 @@ export class AppComponent implements OnInit {
         );
     }
   };
+
+  unselectQuiz = () => {
+    this.selectedQuiz = undefined;
+  };
 }
