@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 interface QuizFromWeb {
@@ -12,26 +13,14 @@ interface QuizFromWeb {
 })
 export class QuizService {
 
-  constructor() { }
+  constructor(
+    private builtInAngularHttpClient: HttpClient
+  ) { }
 
-  loadQuizzes = (): QuizFromWeb[] => {
-    const quizzesFromWeb = [
-      {
-        name: 'Quiz 1'
-        , questions: [
-          {
-            name: 'Question 1'
-          }
-          , {
-            name: 'Question 2'
-          }
-        ]
-      }
-      , {
-        name: 'Quiz 2'
-        , questions: []
-      }
-    ];
+  loadQuizzes = () => {
+    const quizzesFromWeb = this.builtInAngularHttpClient.get<QuizFromWeb[]>(
+      "https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Mystery%20Quiz"
+    );
 
     return quizzesFromWeb;
   };

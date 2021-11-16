@@ -26,14 +26,31 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const qs = this.quizSvc.loadQuizzes();
     console.log(qs);  
+
+    qs.subscribe(
+      data => {
+        console.log(data);
+
+        this.quizzes = data.map(x => ({
+          quizName: x.name
+          , quizQuestions: x.questions.map(y => ({
+            questionName: y.name
+          }))
+          , markedForDelete: false
+        }));
+      }
+      , err => {
+        console.error(err);
+      }
+    );
     
-    this.quizzes = qs.map(x => ({
-      quizName: x.name
-      , quizQuestions: x.questions.map(y => ({
-        questionName: y.name
-      }))
-      , markedForDelete: false
-    }));
+    // this.quizzes = qs.map(x => ({
+    //   quizName: x.name
+    //   , quizQuestions: x.questions.map(y => ({
+    //     questionName: y.name
+    //   }))
+    //   , markedForDelete: false
+    // }));
   }
 
   quizzes: QuizDisplay[] = [];
