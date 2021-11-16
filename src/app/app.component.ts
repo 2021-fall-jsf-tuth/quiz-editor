@@ -24,10 +24,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   errorLoadingQuizzes = false;
+  loading = true;
 
   ngOnInit() {
     const qs = this.quizSvc.loadQuizzes();
     console.log(qs);  
+
+    this.loading = true;
 
     qs.subscribe(
       data => {
@@ -40,10 +43,13 @@ export class AppComponent implements OnInit {
           }))
           , markedForDelete: false
         }));
+
+        this.loading = false;
       }
       , err => {
         console.error(err);
         this.errorLoadingQuizzes = true;
+        this.loading = false;
       }
     );
     
