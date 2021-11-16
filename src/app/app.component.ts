@@ -43,13 +43,7 @@ export class AppComponent implements OnInit {
       }
     );
     
-    // this.quizzes = qs.map(x => ({
-    //   quizName: x.name
-    //   , quizQuestions: x.questions.map(y => ({
-    //     questionName: y.name
-    //   }))
-    //   , markedForDelete: false
-    // }));
+
   }
 
   quizzes: QuizDisplay[] = [];
