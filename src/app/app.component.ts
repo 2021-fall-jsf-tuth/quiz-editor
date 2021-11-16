@@ -32,11 +32,12 @@ export class AppComponent implements OnInit {
         console.log(data);
 
         this.quizzes = data.map(x => ({
-          quizName: x.name, quizQuestions: x.questions.map (y => ({
+          quizName: x.name
+          , quizQuestions: x.questions.map (y => ({
             questionName: y.name
           }))
         , markedForDelete:false 
-        }))
+        }));
       }
       , err => {
         console.log(err);
