@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
     private quizSvc: QuizService
   ) {}
 
+  errorLoadingQuizzes = false;
+
   ngOnInit() {
     const qs = this.quizSvc.loadQuizzes();
     console.log(qs);
@@ -41,16 +43,10 @@ export class AppComponent implements OnInit {
       }
       , err => {
         console.log(err);
+        this.errorLoadingQuizzes = true;
       }
     );
     
-    // this.quizzes = qs.map(x => ({
-    //   quizName: x.name
-    //   , quizQuestions: x.questions.map(y => ({
-    //     questionName: y.name
-    //   }))
-    //   , markedForDelete: false
-    // }));
   }
 
   quizzes: QuizDisplay[] = [];
