@@ -111,4 +111,70 @@ export class AppComponent implements OnInit {
   unselectQuiz = () => {
     this.selectedQuiz = undefined;
   };
+
+  jsPromisesOne = () => {
+    const x = this.quizSvc.getMagicNumber(true)
+    console.log(x)
+
+    x
+      .then(
+        data => {
+          console.log(data)
+
+          const secondMagicNumber = this.quizSvc.getMagicNumber(true)
+          console.log(secondMagicNumber)
+
+          secondMagicNumber.then(
+            data => {
+              console.log(data)
+            }
+          ).catch(
+            err => {
+              console.error(err)
+            }
+          )
+        }
+      )
+      .catch(
+        err => {
+          console.error(err)
+        }
+      ) 
+  }
+
+  jsPromisesTwo = async () => {
+    try {
+      const x = await this.quizSvc.getMagicNumber(true)
+      console.log(x)
+
+      const secondMagicNumber = await this.quizSvc.getMagicNumber(true)
+      console.log(secondMagicNumber)
+
+      // get 10 magic numbers
+      for (let x = 0; x < 10; x++) {
+        console.log(await this.quizSvc.getMagicNumber(true))
+      }
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }
+
+  jsPromisesThree = async () => {
+    try {
+      const x = this.quizSvc.getMagicNumber(true)
+      console.log(x)
+
+      const secondMagicNumber = this.quizSvc.getMagicNumber(true)
+      console.log(secondMagicNumber)
+
+      const results = await Promise.all([x, secondMagicNumber])
+      console.log(results)
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }
+
+
 }
