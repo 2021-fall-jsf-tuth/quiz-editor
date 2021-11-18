@@ -111,4 +111,74 @@ export class AppComponent implements OnInit {
   unselectQuiz = () => {
     this.selectedQuiz = undefined;
   };
+
+  jsPromisesOne = () => {
+    const x = this.quizSvc.getMagicNumber(true);
+    console.log(x);  // ???
+
+    x
+      .then(
+      data => {
+        console.log(data); // ???
+        const secondmagicNumber = this.quizSvc.getMagicNumber(true);
+        console.log(secondmagicNumber);  
+
+        secondmagicNumber.then(
+          data => {
+            console.log(data);
+          }
+        ).catch(
+          err => {
+            console.error(err);
+          } 
+        );
+      }
+    )
+    .catch(
+      err=>{
+        console.error(err);
+      }
+    )
+  };
+
+  jsPromisesTwo = async () => {
+
+    try{
+      const x = await this.quizSvc.getMagicNumber(true);
+      console.log(x); // ???
+
+      const secondmagicNumber = await this.quizSvc.getMagicNumber(true);
+      console.log(secondmagicNumber);
+
+      //get 10 magic numbers...
+      for(let x = 0; x < 10; x++ ){
+        console.log(await this.quizSvc.getMagicNumber(true));
+      }
+    }
+    catch(err) {
+      console.error(err);
+    }
+
+  };
+
+  jsPromisesThree = async () => {
+
+    try{
+      const x = this.quizSvc.getMagicNumber(true);
+      console.log(x); // ???
+
+      const secondmagicNumber = this.quizSvc.getMagicNumber(true);
+      console.log(secondmagicNumber);
+
+      const results = await Promise.all([x, secondmagicNumber ]);
+      //const results = await Promise.race([x, secondmagicNumber ]);
+      //const results = await Promise.allSettled([x, secondmagicNumber ]);
+      console.log(results);
+    }
+    catch(err) {
+      console.error(err);
+    }
+
+  };
+
 }
