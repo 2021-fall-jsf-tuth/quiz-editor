@@ -26,32 +26,52 @@ export class AppComponent implements OnInit {
   errorLoadingQuizzes = false;
   loading = true;
 
-  ngOnInit() {
-    const qs = this.quizSvc.loadQuizzes();
-    console.log(qs);  
+    load = async () => {
+      try{
+        this.loading = true;
+        const qs = await this.quizSvc.loadQuizzes();
 
-    this.loading = true;
-
-    qs.subscribe(
-      data => {
-        console.log(data);
-
-        this.quizzes = data.map(x => ({
+        this.quizzes = qs.map(x => ({
           quizName: x.name
           , quizQuestions: x.questions.map(y => ({
-            questionName: y.name
+            quizName: y.name 
           }))
-          , markedForDelete: false
-        }));
-
-        this.loading = false;
+        }))
+      
       }
-      , err => {
+      catch(err){
         console.error(err);
-        this.errorLoadingQuizzes = true;
         this.loading = false;
       }
-    );
+    };
+
+  ngOnInit() {
+    this.load();
+    // const qs = this.quizSvc.loadQuizzes();
+    // console.log(qs);  
+
+    // this.loading = true;
+
+    // qs.subscribe(
+    //   data => {
+    //     console.log(data);
+
+    //     this.quizzes = data.map(x => ({
+    //       quizName: x.name
+    //       , quizQuestions: x.questions.map(y => ({
+    //         questionName: y.name
+    //       }))
+    //       , markedForDelete: false
+    //     }));
+
+    //     this.loading = false;
+    //   }
+    //   , err => {
+    //     console.error(err);
+    //     this.errorLoadingQuizzes = true;
+    //     this.loading = false;
+    //   }
+    // );
     
     // this.quizzes = qs.map(x => ({
     //   quizName: x.name
