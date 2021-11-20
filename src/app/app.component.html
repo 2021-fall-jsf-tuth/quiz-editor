@@ -1,5 +1,5 @@
 <div class="container">
-  <div 
+  <!-- <div 
     class="row"
     *ngIf="loading"
   >
@@ -10,7 +10,21 @@
         </b>
       </div>
     </div>
+  </div> -->
+
+  <div 
+    class="row"
+    *ngIf="onLoading"
+  >
+    <div class="col-md-12">
+      <div class="alert alert-dark mt-3">
+        <b>
+          Loading your quizzes...
+        </b>
+      </div>
+    </div>
   </div>
+  
   <div 
     class="row"
     *ngIf="errorLoadingQuizzes"
@@ -20,10 +34,12 @@
         Error loading quizzes, please try again later...
       </div>
     </div>
+
+    
   </div>
   <div 
     class="row"
-    *ngIf="!errorLoadingQuizzes && !loading"
+    *ngIf="!errorLoadingQuizzes && !onLoading"
   >
     <div class="col-md-4">
       <div class="d-flex justify-content-between mt-3">
