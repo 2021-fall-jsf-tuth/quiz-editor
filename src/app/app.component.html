@@ -111,11 +111,18 @@
       <div class="mt-3">
         <button class="btn btn-outline-dark">
           Save Quizzes
+          <!--Adding badges to the Save button-->
           <span 
             class="badge badge-danger ml-1"
             *ngIf="deletedQuizCount > 0"
-          ><!--Adding badges-->
+          >
             -{{ deletedQuizCount }}
+          </span>
+          <span 
+            class="badge badge-success ml-1"
+            *ngIf="addedQuizCount > 0"
+          >
+            +{{ addedQuizCount }}
           </span>
         </button>
         <button
