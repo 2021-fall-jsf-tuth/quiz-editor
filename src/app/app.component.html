@@ -109,7 +109,11 @@
       *ngIf="selectedQuiz !== undefined"
     >
       <div class="mt-3">
-        <button class="btn btn-outline-dark">
+        <button 
+          class="btn"
+          [class.btn-outline-dark]="deletedQuizCount + addedQuizCount + editedQuizCount === 0"
+          [class.btn-dark]="deletedQuizCount + addedQuizCount + editedQuizCount > 0"
+        >
           Save Quizzes
           <span 
             class="badge badge-danger ml-1"
@@ -122,6 +126,12 @@
             *ngIf="addedQuizCount > 0"
           >
             +{{ addedQuizCount }}
+          </span>
+          <span 
+            class="badge badge-light ml-1"
+            *ngIf="editedQuizCount > 0"
+          >
+            *{{ editedQuizCount }}
           </span>
         </button>
         <button 
