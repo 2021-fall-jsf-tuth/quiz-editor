@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
@@ -178,4 +179,9 @@ export class AppComponent implements OnInit {
 
   };
 
+
+  cancelAllChanges = () => {
+    this.load();
+    this.selectedQuiz = undefined;
+  };
 }
