@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { zip } from 'rxjs';
 import { QuizService } from './quiz.service';
 
 interface QuizDisplay {
@@ -6,6 +7,7 @@ interface QuizDisplay {
   quizQuestions: QuestionDisplay[]
   markedForDelete: boolean;
   newlyAdded: boolean;
+  naiveChecksum: string;
 }
 
 interface QuestionDisplay {
@@ -40,8 +42,10 @@ export class AppComponent implements OnInit {
         }))
         , markedForDelete: false
         , newlyAdded: false
+        , naiveChecksum: x.name + x.questions.map(z => '~' + z.name).join('')
       }));
 
+      console.log(this.quizzes);
       this.loading = false;
     }
     catch (err) {
@@ -71,6 +75,7 @@ export class AppComponent implements OnInit {
       , quizQuestions: []
       , markedForDelete: false
       , newlyAdded: true
+      , naiveChecksum: ""
     };
 
     this.quizzes = [
@@ -195,11 +200,23 @@ export class AppComponent implements OnInit {
   }
 
   getAddedQuizzes = () => {
-    return this.quizzes.filter(x => x.newlyAdded);
+    return this.quizzes.filter(x => x.newlyAdded && !x.markedForDelete);
   };
 
   get addedQuizCount() {
     return this.getAddedQuizzes().length;
+  }
+
+  getEditedQuizzes = () => {
+    return this.quizzes.filter(x => 
+      (x.quizName + x.quizQuestions.map(y => '~' + y.questionName).join('')) != x.naiveChecksum
+       && !x.newlyAdded
+       && !x.markedForDelete
+       );
+  };
+
+  get editedQuizCount() {
+    return this.getEditedQuizzes().length;
   }
 
 }
