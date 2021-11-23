@@ -194,12 +194,14 @@ export class AppComponent implements OnInit {
   getDeletedQuizzes = () => {return this.quizzes.filter(x => x.markedForDelete);};
   get deletedQuizCount() {return this.getDeletedQuizzes().length;}
 
-  getAddedQuizzes = () => {return this.quizzes.filter(x => x.newlyAdded);};
+  getAddedQuizzes = () => {return this.quizzes.filter(x => x.newlyAdded
+    && !x.markedForDelete);};
   get addedQuizCount() {return this.getAddedQuizzes().length;}
 
   getEditedQuizzes = () => {return this.quizzes.filter(x =>
     (x.quizName + x.quizQuestions.map(y => "~" + y.questionName).join("")) != x.checkSum
-    && !x.newlyAdded);};
+    && !x.newlyAdded
+    && !x.markedForDelete);};
   get editedQuizCount() {return this.getEditedQuizzes().length;}
 
 }
