@@ -182,4 +182,13 @@ export class AppComponent implements OnInit {
     this.load(); //Will "reload" all the quizes
     this.selectedQuiz = undefined;
   };
+
+  getDeletedQuizzes = () => {
+    return this.quizzes.filter(x => x.markedForDelete);
+  
+  };
+
+  get deletedQuizCount() {
+    return this.getDeletedQuizzes().length;
+  }
 }
