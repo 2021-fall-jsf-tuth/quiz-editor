@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <div class="alert alert-dark mt-3">
         <b>
-          Loading...
+          Loading quizzes...
         </b>
       </div>
     </div>
@@ -116,6 +116,12 @@
             *ngIf="deletedQuizCount > 0"
           >
             -{{ deletedQuizCount }}
+          </span>
+          <span 
+            class="badge badge-success ml-1"
+            *ngIf="addedQuizCount > 0"
+          >
+            +{{ addedQuizCount }}
           </span>
         </button>
         <button 
