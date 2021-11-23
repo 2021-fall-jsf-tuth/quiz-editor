@@ -178,4 +178,8 @@ export class AppComponent implements OnInit {
 
   };
 
+  cancelAllChanges = () => {
+    this.load();
+    this.selectedQuiz = undefined;
+  };
 }
