@@ -5,6 +5,8 @@ interface QuizDisplay {
   quizName: string;
   quizQuestions: QuestionDisplay[]
   markedForDelete: boolean;
+  newlyAdded: boolean;
+  naiveChecksum: string;
 }
 
 interface QuestionDisplay {
@@ -38,8 +40,11 @@ export class AppComponent implements OnInit {
           questionName: y.name
         }))
         , markedForDelete: false
+        , newlyAdded: false
+        , naiveChecksum: x.name + x.questions.map(z => '~' + z.name).join('')
       }));
 
+      console.log(this.quizzes)
       this.loading = false;
     }
     catch (err) {
@@ -68,6 +73,8 @@ export class AppComponent implements OnInit {
       quizName: 'Untitled Quiz'
       , quizQuestions: []
       , markedForDelete: false
+      , newlyAdded: true
+      , naiveChecksum: ""
     };
 
     this.quizzes = [
@@ -190,5 +197,27 @@ export class AppComponent implements OnInit {
   get deletedQuizCount() {
     return this.getDeletedQuizzes().length
   }
+
+  getNewQuizzes = () => {
+    return this.quizzes.filter(x => x.newlyAdded)
+      
+  }
+
+  get newQuizCount() {
+    return this.getNewQuizzes().length
+  }
+
+  getEditedQuizzes = () => {
+    return this.quizzes.filter(x =>
+      (x.quizName + x.quizQuestions.map(y => '~' + y.questionName).join('')) != x.naiveChecksum && !x.newlyAdded)
+      
+  }
+
+  get editedQuizCount() {
+    return this.getEditedQuizzes().length
+  }
+
+
+
 
 }
