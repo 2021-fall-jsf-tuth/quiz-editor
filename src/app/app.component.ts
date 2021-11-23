@@ -178,4 +178,8 @@ export class AppComponent implements OnInit {
 
   };
 
+  cancelAllChanges = () => {
+    this.load(); //Will "reload" all the quizes
+    this.selectedQuiz = undefined;
+  };
 }
