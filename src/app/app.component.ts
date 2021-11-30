@@ -21,7 +21,7 @@ interface QuestionDisplay {
   animations: [
     trigger('detailsFromLeft', [
       transition('leftPosition => finalPosition', [
-        animate('300ms', keyframes([
+        animate('1500ms', keyframes([
           style({ left: '-30px', offset: 0.0 }),
           style({ left: '-20px', offset: 0.25 }),
           style({ left: '-10px', offset: 0.5 }),
