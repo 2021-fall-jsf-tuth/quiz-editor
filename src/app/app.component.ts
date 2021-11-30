@@ -90,6 +90,7 @@ export class AppComponent implements OnInit {
   selectQuiz = (quizToSelect: QuizDisplay) => {
     console.log(quizToSelect);
     this.selectedQuiz = quizToSelect;
+    this.detailsFromLeftState = "finalPosition";
   };
 
   addNewQuiz = () => {
@@ -242,4 +243,15 @@ export class AppComponent implements OnInit {
   get editedQuizCount() {
     return this.getEditedQuizzes().length;
   }    
+
+  detailsFromLeftState = "leftPosition";
+
+  detailsFromLeftDone = () => {
+
+    this.detailsFromLeftState = "leftPosition";
+
+  };
+
+
+
 }
