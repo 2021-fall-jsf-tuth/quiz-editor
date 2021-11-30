@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { trigger, animate, style, keyframes, transition  } from '@angular/animations';
+import { trigger, animate, style, keyframes, transition } from '@angular/animations';
 
 interface QuizDisplay {
   quizName: string;
@@ -41,6 +41,8 @@ interface QuestionDisplay {
     ])
   ]
 })
+
+
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
