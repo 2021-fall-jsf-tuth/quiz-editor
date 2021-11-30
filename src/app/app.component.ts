@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
   selectQuiz = (quizToSelect: QuizDisplay) => {
     console.log(quizToSelect);
     this.selectedQuiz = quizToSelect;
-    this.detailsFromLeftState = "finalPositon"
+    this.detailsFromLeftState = "finalPosition"
   };
 
   addNewQuiz = () => {
