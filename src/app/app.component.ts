@@ -252,5 +252,6 @@ export class AppComponent implements OnInit {
 
   detailsFromLeftDone = () => {
     this.detailsFromLeftState = "leftPosition";
+    console.log("Here");
   };
 }
