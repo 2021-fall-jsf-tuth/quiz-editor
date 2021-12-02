@@ -269,7 +269,17 @@ export class AppComponent implements OnInit {
             question: y.questionName
           }))
         }));
-      const newQuizzes: ShapeForSavingNewQuizzes[] = [];
+
+//-------------------------------------------------------------------------------
+
+      const newQuizzes: ShapeForSavingNewQuizzes[] = this.getAddedQuizzes()
+        .map(x => ({
+          quizName: x.quizName,
+          quizQuestions: x.quizQuestions.map(y => y.questionName)
+        }));
+
+//-------------------------------------------------------------------------------
+
 
       //Call the service to save them.
       const numberOfEditedQuizzesSaved = await this.quizSvc.saveQuizzes(
@@ -278,6 +288,7 @@ export class AppComponent implements OnInit {
       );
 
       console.log(numberOfEditedQuizzesSaved);
+      
 
     }
 

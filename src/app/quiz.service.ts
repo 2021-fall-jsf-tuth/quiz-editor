@@ -15,10 +15,12 @@ export interface ShapeForSavingEditedQuizzes {
   }[];
 }
 
+//-------------------------------------------------
 export interface ShapeForSavingNewQuizzes {
   quizName: string;
   quizQuestions: string[];
 }
+//-------------------------------------------------
 
 @Injectable({
   providedIn: 'root'
