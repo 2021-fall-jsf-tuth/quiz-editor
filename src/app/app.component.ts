@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from './quiz.service';
+import { QuizService, ShapeForSavingEditedQuizzes, ShapeForSavingNewQuizzes } from './quiz.service';
 
 import {
   trigger
@@ -254,4 +254,32 @@ export class AppComponent implements OnInit {
   detailsFromLeftDone = () => {
     this.detailsFromLeftState = "leftPosition";
   };
+
+  saveQuizzes = async () => {
+    try {
+      // Get and transform the edited and newly added quizzes
+      const editedQuizzes: ShapeForSavingEditedQuizzes[] = this.getEditedQuizzes().map(x => ({
+        quiz: x.quizName
+        , questions: x.quizQuestions.map(y => ({
+          question: y.questionName
+        }))
+      }));
+      const newQuizzes: ShapeForSavingNewQuizzes[] = [];
+
+      // call the service to save them.
+      const numberOfEditedQuizzesSaved = await this.quizSvc.saveQuizzes(
+        editedQuizzes
+        , newQuizzes
+      ); 
+
+        console.log(numberOfEditedQuizzesSaved);
+
+
+
+    } 
+    
+    catch (err) {
+      console.error(err);
+    }
+  }
 }
