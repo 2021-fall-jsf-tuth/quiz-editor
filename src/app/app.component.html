@@ -119,6 +119,7 @@
             class="btn"
             [class.btn-outline-dark]="deletedQuizCount + addedQuizCount + editedQuizCount === 0"
             [class.btn-dark]="deletedQuizCount + addedQuizCount + editedQuizCount > 0"
+            (click)="saveQuizzes()"
           >
             Save Quizzes
             <span 

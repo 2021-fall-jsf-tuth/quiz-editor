@@ -1,5 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from './quiz.service';
+import { 
+  QuizService
+  , ShapeForSavingEditedQuizzes
+  , ShapeForSavingNewQuizzes 
+} from './quiz.service';
+
+import {
+  trigger
+  , transition
+  , style
+  , animate
+  , keyframes
+} from '@angular/animations';
 
 import {
   trigger
@@ -46,7 +58,7 @@ interface QuestionDisplay {
         ]))
       ])
     ])
-  ]
+  ]  
 })
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
@@ -247,11 +259,43 @@ export class AppComponent implements OnInit {
 
   get editedQuizCount() {
     return this.getEditedQuizzes().length;
-  }
-  
-  detailsFromLeftState = "leftPosition"
+  }    
+
+  detailsFromLeftState = "leftPosition";
 
   detailsFromLeftDone = () => {
     this.detailsFromLeftState = "leftPosition";
+  };
+
+  saveQuizzes = async () => {
+
+    try {
+
+      // Get and transform the edited and newly added quizzes.
+      const editedQuizzes: ShapeForSavingEditedQuizzes[] = this.getEditedQuizzes().map(x => ({
+        quiz: x.quizName
+        , questions: x.quizQuestions.map(y => ({
+          question: y.questionName
+        }))
+      }));
+
+
+      const newQuizzes: ShapeForSavingNewQuizzes[] = this.getAddedQuizzes().map(x => ({
+        quizName: x.quizName
+        , quizQuestions: x.quizQuestions.map(y => y.questionName)
+      }));
+
+      // Call the service to save them.
+      const numberOfEditedQuizzesSaved = await this.quizSvc.saveQuizzes(
+        editedQuizzes
+        , newQuizzes
+      );
+
+      console.log(numberOfEditedQuizzesSaved);
+    }
+
+    catch (err) {
+      console.error(err);
+    }
   };
 }
