@@ -9,14 +9,6 @@ import {
   trigger
   , transition
   , style
-  , animate
-  , keyframes
-} from '@angular/animations';
-
-import {
-  trigger
-  , transition
-  , style
   , keyframes
   , animate
 } from '@angular/animations'
