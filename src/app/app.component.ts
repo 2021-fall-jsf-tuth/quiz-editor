@@ -260,10 +260,10 @@ export class AppComponent implements OnInit {
   };
 
   saveQuizzes = async () => {
-
     try {
 
-      // Get and transform the edited and newly added quizzes.
+      const newQuizzes: ShapeForSavingNewQuizzes[] = [];
+      
       const editedQuizzes: ShapeForSavingEditedQuizzes[] = this.getEditedQuizzes().map(x => ({
         quiz: x.quizName
         , questions: x.quizQuestions.map(y => ({
@@ -271,23 +271,16 @@ export class AppComponent implements OnInit {
         }))
       }));
 
-
-      const newQuizzes: ShapeForSavingNewQuizzes[] = this.getAddedQuizzes().map(x => ({
-        quizName: x.quizName
-        , quizQuestions: x.quizQuestions.map(y => y.questionName)
-      }));
-
-      // Call the service to save them.
-      const numberOfEditedQuizzesSaved = await this.quizSvc.saveQuizzes(
+      const numberOfUpdatedQuizzes = await this.quizSvc.saveQuizzes(
         editedQuizzes
         , newQuizzes
       );
 
-      console.log(numberOfEditedQuizzesSaved);
+      console.log("numberOfUpdatedQuizes", numberOfUpdatedQuizzes);
     }
-
+    
     catch (err) {
       console.error(err);
     }
-  };
+  }
 }
